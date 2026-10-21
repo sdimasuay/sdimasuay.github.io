@@ -119,13 +119,13 @@
                     </div>
                     <div>
                         <span class="font-orbitron font-extrabold text-lg text-white tracking-wider block leading-none">STARK<span class="text-stark-cyan">OS</span></span>
-                        <span class="font-mono text-[10px] text-stark-gold tracking-widest uppercase">MARK-85 PROTOCOL // ONLINE</span>
+                        <span id="system-status-text" class="font-mono text-[10px] text-stark-gold tracking-widest uppercase">MARK-85 PROTOCOL // ONLINE</span>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-4">
                     <button id="power-btn" onclick="togglePowerMode()" class="px-3 py-1.5 rounded hud-border bg-slate-900 text-stark-cyan text-xs font-mono flex items-center gap-2 hover:bg-stark-cyan/10 transition">
-                        <i class="fa-solid fa-power-off text-stark-cyan"></i>
+                        <i id="power-icon" class="fa-solid fa-power-off text-stark-cyan"></i>
                         <span id="power-text" class="hidden sm:inline">ARC POWER: FULL</span>
                     </button>
                 </div>
@@ -139,7 +139,7 @@
             <section class="hud-border bg-stark-card/80 backdrop-blur-md rounded-lg p-6 sm:p-8">
                 <div class="flex flex-col md:flex-row items-center gap-8">
                     
-                    <!-- AVATAR CONTAINER (ANIME DEV WITH HEADPHONES) -->
+                    <!-- AVATAR CONTAINER (ANIME DEV WITHOUT HEADPHONES) -->
                     <div class="relative group shrink-0">
                         <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full border-2 border-stark-cyan p-1.5 relative arc-glow bg-slate-950">
                             <div class="w-full h-full rounded-full overflow-hidden bg-slate-900 flex items-center justify-center relative">
@@ -185,12 +185,6 @@
                                     <!-- Short Dark Anime Hair & Bangs -->
                                     <path d="M60 80 C55 55, 75 30, 100 30 C125 30, 145 55, 140 80 C145 105, 138 120, 132 125 C128 110, 130 85, 126 70 C118 52, 82 52, 74 70 C70 85, 72 110, 68 125 C62 120, 55 105, 60 80 Z" fill="#0f172a"/>
                                     <path d="M68 60 Q80 78 88 62 Q98 82 108 62 Q118 78 132 60" fill="none" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/>
-
-                                    <!-- Headphones around neck -->
-                                    <path d="M62 118 C62 142, 138 142, 138 118" fill="none" stroke="#0f172a" stroke-width="10" stroke-linecap="round"/>
-                                    <path d="M62 118 C62 142, 138 142, 138 118" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
-                                    <rect x="58" y="110" width="12" height="22" rx="4" fill="#334155" stroke="#00F0FF" stroke-width="1"/>
-                                    <rect x="130" y="110" width="12" height="22" rx="4" fill="#334155" stroke="#00F0FF" stroke-width="1"/>
                                 </svg>
                             </div>
 
@@ -422,12 +416,21 @@
         function togglePowerMode() {
             fullPower = !fullPower;
             const powerBtnText = document.getElementById('power-text');
+            const powerIcon = document.getElementById('power-icon');
+            const systemStatusText = document.getElementById('system-status-text');
+            
             if (!fullPower) {
-                document.body.style.filter = 'brightness(0.7) contrast(1.1)';
-                powerBtnText.innerText = 'ARC POWER: STEALTH';
+                document.body.style.filter = 'brightness(0.5) contrast(1.2)';
+                powerBtnText.innerText = 'ARC POWER: OFFLINE';
+                powerIcon.style.color = '#E62429';
+                systemStatusText.innerText = 'MARK-85 PROTOCOL // OFFLINE';
+                systemStatusText.style.color = '#E62429';
             } else {
                 document.body.style.filter = 'none';
                 powerBtnText.innerText = 'ARC POWER: FULL';
+                powerIcon.style.color = '#00F0FF';
+                systemStatusText.innerText = 'MARK-85 PROTOCOL // ONLINE';
+                systemStatusText.style.color = '#FFB800';
             }
         }
     </script>
